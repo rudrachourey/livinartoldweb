@@ -543,7 +543,9 @@ pre code {
 
 .container {
   width: 100%;
+  /* background-color: #000; */
   padding-right: 15px;
+  /* height: 1-0; */
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
@@ -6903,6 +6905,7 @@ button.bg-dark:focus {
 .clearfix::after {
   display: block;
   clear: both;
+  background-color: #002752;
   content: "";
 }
 

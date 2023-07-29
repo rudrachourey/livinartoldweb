@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose')
-const commentModel = require('./users')
+const userModel = require('./users')
+// const firebase = require('firebase');
+
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,6 +15,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/maintaince', function(req, res, next) {
   res.render('maintaince');
+});
+
+
+router.get('/coundown', function(req, res, next) {
+  res.render('coundown');
 });
 
 
@@ -48,8 +57,8 @@ router.get('/blog-standard.ejs', function(req, res, next) {
 });
 
 
-router.get('/blog-grid.ejs', function(req, res, next) {
-  res.render('blog-grid.ejs');
+router.get('/blog-grid', function(req, res, next) {
+  res.render('blog-grid');
 });
 
 
@@ -91,8 +100,8 @@ router.get('/index-onepage.ejs', function(req, res, next) {
 });
 
 
-router.get('/portfolio.ejs', function(req, res, next) {
-  res.render('portfolio.ejs');
+router.get('/portfolio', function(req, res, next) {
+  res.render('portfolio');
 });
 
 
@@ -116,8 +125,8 @@ router.get('/service-element.ejs', function(req, res, next) {
 });
 
 
-router.get('/services.ejs', function(req, res, next) {
-  res.render('service.ejs');
+router.get('/service', function(req, res, next) {
+  res.render('service');
 });
 
 
@@ -126,51 +135,151 @@ router.get('/team.ejs', function(req, res, next) {
 });
 
 
-router.get('/contact-form.ejs', function(req, res, next) {
-  res.render('contact-form.ejs');
+router.get('/contact-form', function(req, res, next) {
+  res.render('contact-form');
 });
 
 
-// router.post('/blogs/comments', function(req, res, next) {
-//   // console.log(req.params.id)
-//   // console.log(req.body.name)
-//   // console.log(req.body.email)
-//   // console.log(req.body.message)
-//   const comment = new commentModel({
-//     name: req.body.name,
-//     email: req.body.email,
-//     comment: req.body.comment,
-//   })
-//   .then((newComment)=>{
-//     comment.save(()=>{
-      
-//         res.json(comment)
-//         console.log(comment);
-//       // }
-//   })
-
-//   })
-// })
-
-
-
-router.post('/blogs/comments', function(req, res, next) {
-  const comment = new commentModel({
+router.post('/sendmail', function(req, res, next){
+  const newmail = new userModel({
     name: req.body.name,
     email: req.body.email,
     comment: req.body.comment,
   });
 
-  comment.save()
-    .then((newComment) => {
-      res.render('/b1',newComment);
-      console.log(newComment);
-    })
-    .catch((error) => {
-      console.error('Error saving comment:', error);
-      // Handle the error appropriately
-    });
+  newmail.save().then((mail)=>{
+      console.log(mail)
+      res.redirect('back');
+  })
 });
+
+
+
+
+
+
+
+
+/////////////////***********Comment Section *********//////////////////
+
+
+
+
+  router.post('/blogs/comments', function(req, res, next) {
+    const comment = new userModel({
+      name: req.body.name,
+      email: req.body.email,
+      comment: req.body.comment,
+    });
+
+    comment.save()
+      .then((newComment) => {
+        res.redirect('/comments'); // Redirect to the comments route after saving
+        console.log(newComment);
+      })
+      .catch((error) => {
+        console.error('Error saving comment:', error);
+        // Handle the error appropriately
+      });
+  });
+
+
+
+
+  router.get('/comments', function(req, res, next) {
+    userModel.find()
+      .then((comments) => {
+        res.render('b1', { comments: comments });
+        console.log(comments)
+      })
+      .catch((error) => {
+        console.error('Error fetching comments:', error);
+        // Handle the error appropriately
+      });
+  });
+
+
+
+
+
+////////////////*********end of comment section********************////////////////
+
+
+
+
+
+
+////////////////*********contact Form section********************////////////////
+
+
+
+
+router.get('/main-form', function(req, res, next) {
+  res.render('main-form');
+});
+  
+
+
+
+
+
+router.post('/processData', (req, res) => {
+  const data = req.body; // The data sent from the client will be available in req.body
+
+  // Manipulate the data as needed
+  // Example: Save the data to the database, perform further processing, etc.
+  console.log('Received data:', data);
+
+  // Send a response to the client
+  res.json({ message: 'Data received successfully!' });
+});
+
+
+
+
+/////////****meeting rout ******* *///////////////
+
+
+
+
+router.post('/coundownn', function(req, res, next) {
+  res.render('coundown');
+});
+
+router.get('/meeting-form', function(req, res, next) {
+  res.render('meeting-form');
+});
+
+
+router.post('/datetime', function(req, res, next) {
+  const timeSchedule = new userModel({
+    date: req.body.date,
+    time: req.body.time,
+  });
+  // console.log(timeSchedule)
+
+  timeSchedule.save()
+  .then((newtime)=>{
+    console.log(newtime)
+    // res.json({newtime})
+    res.redirect('/coundown');
+  })
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;

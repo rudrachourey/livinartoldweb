@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Ecommerce Technologies</title>
+
+<!-- Fav Icon -->
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/validform.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mian-form-cont">
+      <div class="module-wrape">
+        <div class="module-otp"></div>
+        <div class="card-otp-wrape">
+          <h1>Enter One Time Password Sent <br> To Your Mobile Number</h1>
+          <form id="otp-confirm">
+            <div id="otp">
+              <input type="text" class="verificationcode" name="verificationcode" maxlength="1" required> 
+              <input type="text" class="verificationcode" name="verificationcode" maxlength="1" required> 
+              <input type="text" class="verificationcode" name="verificationcode" maxlength="1" required> 
+              <input type="text" class="verificationcode" name="verificationcode" maxlength="1" required> 
+              <input type="text" class="verificationcode" name="verificationcode" maxlength="1" required> 
+              <input type="text" class="verificationcode" name="verificationcode" maxlength="1" required> 
+            </div>
+
+             <div class="invalid-otp">
+                  <p>invalid</p>
+                </div>
+                <div class="otp-status" id="countdown"></div>
+            <button type="submit" id="verifier">Verify OTP</button>
+            <button id="re-sendOtp" type="button">Resend OTP</button>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="main-from">
+        <div id="side-bar">
+          <div class="sideBar">
+              <img src="/images/form-doodles.jpg" alt="">
+          </div>
+          <div class="sideBar">
+            <img src="/images/hand-drawn-online-exam-checklist-pencil-taking-test-choosing-answer-questionnaire-form-education-concept-doodle-vector-192639534.webp" alt="">
+          </div>
+          <div class="sideBar">
+            <img src="/images/computer.webp" alt="">
+          </div>
+        </div>
+        <div class="left-form">
+          <h1>You are just 1 step away to <br> contact with Livinart</h1>
+          <form id="otp-form">
+            <!-- Form fields and elements -->
+            <div class="lebles">
+              <input type="text" id="myname" name="name" placeholder="First Name" required>
+              <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+            </div>
+            <div id="second-label" class="lebles">
+              <div class="country-div">+91</div>
+              <input type="text" id="number" name="number" placeholder="Phone Number" required>
+            </div>
+            <div id="recaptcha-container"></div> 
+            <div class="lebles">
+              <input type="email" id="myemail" name="email" placeholder="Email" required>
+            </div>
+            <button type="submit">Verify Phone No.</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script type="module" src="/js/form-validation.js"></script>
+    <script>
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//       const firebaseConfig = {
+//         apiKey: "AIzaSyBvzLMqNqPuGnvDNdDA3Ja9mSNJRx3VwOA",
+//   authDomain: "livinart-1d609.firebaseapp.com",
+//   projectId: "livinart-1d609",
+//   storageBucket: "livinart-1d609.appspot.com",
+//   messagingSenderId: "77120501134",
+//   appId: "1:77120501134:web:945e0302e5c9707cd660df",
+//   measurementId: "G-PYT3STJ3XS"
+//       };
+// //
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAIML9lz-d-teAo_IavXNShezrziv1UhY4",
+  authDomain: "livinartweb.firebaseapp.com",
+  projectId: "livinartweb",
+  storageBucket: "livinartweb.appspot.com",
+  messagingSenderId: "898709696909",
+  appId: "1:898709696909:web:3c7c871c7f843d4f7c0dc4",
+  measurementId: "G-PL6GSL5PXE"
+};
+
+
+      firebase.initializeApp(firebaseConfig);
+      
+      const auth = firebase.auth();
+    </script>
+</body>
+</html>

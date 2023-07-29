@@ -506,6 +506,8 @@ img {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   width:100%;
   z-index:0;
+  height: 60px;
+  overflow: hidden;
   transition:all 500ms ease;
   -moz-transition:all 500ms ease;
   -webkit-transition:all 500ms ease;
@@ -551,10 +553,10 @@ img {
   margin-top: 10px;
 }
 
-
+/* 
 .loco-img{
   width: 40px;
-}
+} */
 
 .main-header .outer-container{
   position: absolute;
